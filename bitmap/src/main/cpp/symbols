@@ -1,0 +1,10 @@
+W(TYPE, kLibArt, libart.so)
+W(TYPE, kLibArtRuntime, libandroid_runtime.so)
+
+// 顺序很重要！因为几个方法不是一次hook完成的，不能保证原子性，所以必须合理安排hook的顺序
+V(TYPE, kLibArt, kAddressOf, _ZN3artL19VMRuntime_addressOfEP7_JNIEnvP8_jobjectS3_, jlong, (JNIEnv*, jobject, jobject))
+V(TYPE, kLibArt, kNewNonMovableArray, _ZN3artL28VMRuntime_newNonMovableArrayEP7_JNIEnvP8_jobjectP7_jclassi, jobject, (JNIEnv*, jobject, jclass, jint))
+V(TYPE, kLibArt, kDeleteWeakGlobalRef, _ZN3art3JNI19DeleteWeakGlobalRefEP7_JNIEnvP8_jobject, void, (JNIEnv*, jobject))
+V(TYPE, kLibArtRuntime, kDoFreePixels, _ZN7android6Bitmap12doFreePixelsEv, void, (void*))
+V(TYPE, kLibArtRuntime, kAllocateJavaPixelRef, _ZN11GraphicsJNI20allocateJavaPixelRefEP7_JNIEnvP8SkBitmapP12SkColorTable, void*, (JNIEnv*, void*, void*))
+

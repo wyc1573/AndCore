@@ -1,0 +1,42 @@
+//
+// Created by wyc on 2022/8/6.
+//
+
+#pragma once
+
+#include <fcntl.h>
+#include "android-base/logging.h"
+#include "android-base/file.h"
+#include "android-base/unique_fd.h"
+
+#define LOG_CALL(func, param) LOG(INFO) << "function call: " << #func#param " returns "<< func param <<"\n";
+
+inline void test_file() {
+    using namespace android::base;
+    LOG_CALL(GetExecutableDirectory, ());
+    LOG_CALL(GetExecutablePath, ());
+
+    std::string content;
+    unique_fd fd_status(open("/proc/self/status",  O_RDONLY));
+    LOG_CALL(ReadFdToString, (fd_status.release(), &content));
+    LOG(INFO) << "content: \n" << content;
+
+    LOG_CALL(ReadFileToString, ("/proc/self/limits", &content));
+    LOG(INFO) << "content: " << content;
+
+    unique_fd  fd_dev_null(open("/dev/null", O_RDWR));
+    LOG_CALL(WriteStringToFd, (content, fd_dev_null.release()));
+    LOG_CALL(WriteStringToFile, (content, "/dev/null"));
+
+    LOG_CALL(Basename, ("/data/local/tmp/core.dump"));
+    LOG_CALL(Dirname, ("/data/local/tmp/core.dump"));
+
+    char buff[512];
+    fd_status.reset(open("/proc/self/cmdline",  O_RDONLY));
+    LOG_CALL(ReadFully, (fd_status, buff, 512));
+    LOG(INFO) << "buff:\n" << buff;
+
+    fd_dev_null.reset(open("/dev/null", O_RDWR));
+    LOG_CALL(WriteFully, (fd_dev_null.release(), buff, 512));
+}
+#undef LOG_CALL
