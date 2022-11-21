@@ -36,4 +36,5 @@ dependencies {
 
     implementation project(':utils')
     implementation project(':bitmap')
+    implementation project(':qhook')
 }
