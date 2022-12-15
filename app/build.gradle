@@ -30,6 +30,7 @@ android {
     packagingOptions {
         pickFirst 'lib/*/libc++_shared.so'
         pickFirst '**/libshadowhook.so'
+        pickFirst '**/libxdl.so'
     }
 }
 

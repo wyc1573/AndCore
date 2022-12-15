@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_FLAGS "-Wmacro-redefined")
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 find_package(shadowhook REQUIRED CONFIG)
+find_package(xdl REQUIRED CONFIG)
 
 add_library(qhook
         SHARED
@@ -17,4 +18,5 @@ find_library(log-lib
 
 target_link_libraries(qhook
         ${log-lib}
+        xdl::xdl
         shadowhook::shadowhook)
