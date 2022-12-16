@@ -16,7 +16,7 @@ void init(JNIEnv*);
 #define W(TYPE, SYM, VAL)
 #define V(TYPE, LIB, SYM, VAL, RET, PARAM) extern void* ORIGIN_FUNC(SYM); \
 RET PROXY_FUNC(SYM) PARAM;
-#include "symbols"
+#include "hook_sym"
 
 
 #undef W

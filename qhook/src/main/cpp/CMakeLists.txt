@@ -11,6 +11,8 @@ add_library(qhook
         SHARED
         hook/proxy.cc
         hook/hook.cc
+        hook/dl.cc
+        action/action.cc
         qhook.cc)
 
 find_library(log-lib

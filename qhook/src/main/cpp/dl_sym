@@ -1,0 +1,5 @@
+// D(TYPE, LIB, VAL)
+D(TYPE, kLibArt, libart.so)
+
+// L(TYPE, LIB, SYM, VAL, RET, PARAM)
+L(TYPE, kLibArt, kSetIdealFootprint, _ZN3art2gc4Heap17SetIdealFootprintEm, void, (void*, size_t))

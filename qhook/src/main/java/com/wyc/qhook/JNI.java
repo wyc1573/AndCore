@@ -22,4 +22,6 @@ public class JNI {
 
     public static native void nativeStartHook(int mode);
     public static native void nativeStopHook(int mode);
+    public static native void nativeDlInit(int mode);
+    public static native void nativeAction(int mode);
 }

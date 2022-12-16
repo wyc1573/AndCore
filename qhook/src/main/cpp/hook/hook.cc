@@ -12,7 +12,7 @@
 
 //for shadow hook. eg. static void* stub_kAddressOf_ = nullptr;
 #define V(TYPE, LIB, SYM, VAL, RET, PARAM) static void* stub_##SYM##_ = nullptr;
-#include "symbols"
+#include "hook_sym"
 
 void start_hook(JNIEnv *env) {
     init(env);
@@ -23,14 +23,16 @@ void start_hook(JNIEnv *env) {
         stop_hook();                                                                          \
         return;                                                                               \
     }
-#include "symbols"
+#include "hook_sym"
+
     ALOG_ALWAYS("start hook success!");
 }
 
 void stop_hook() {
 #define V(TYPE, LIB, SYM, VAL, RET, PARAM) if (stub_##SYM##_ != nullptr) { shadowhook_unhook(stub_##SYM##_); \
     stub_##SYM##_ = nullptr; }
-#include "symbols"
+#include "hook_sym"
+
     ALOG_ALWAYS("stop hook!");
 }
 

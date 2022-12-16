@@ -16,7 +16,7 @@ void init(JNIEnv* env) {
 #define W(TYPE, SYM, VAL)
 #define V(TYPE, LIB, SYM, VAL, RET, PARAM) void* ORIGIN_FUNC(SYM) = nullptr;      \
     using  SYM##FuncType = RET (*) PARAM;
-#include "symbols"
+#include "hook_sym"
 
 #define CALL_ORIGIN(kSym, param) ((kSym##FuncType)ORIGIN_FUNC(kSym)) param
 #define CHECK_ORIGIN_NULL_ABORT(kSym) if(UNLIKELY(ORIGIN_FUNC(kSym) == nullptr)) { \
