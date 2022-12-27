@@ -30,6 +30,8 @@
 #include "test/test_bitmap.h"
 #include "test/test_space_bitmap.h"
 #include "test/test_card_table.h"
+#include "test/test_jni_helper.h"
+#include "jni-helper/core_jni_helpers.h"
 
 #define CASE(n) LOG(INFO) << "============" << #n << "==============";
 
@@ -123,6 +125,9 @@ Java_com_wyc_utils_JNI_test(JNIEnv *env, jclass clazz, jint mode) {
 
     CASE(CardTable)
     test_card_table();
+
+    CASE(JniHelper)
+    test_jni_helper(env);
 }
 
 #undef CASE
