@@ -88,6 +88,7 @@ public class ThreadLockInfo {
                 sb.append(LockUtils.formatLock(heldLock)).append(";");
             }
         }
+        sb.append("\nblockedOn: ").append(LockUtils.formatLock(lockBlockedOn)).append("\n");
         sb.append("\nstackTraceElement:\n");
         if (stackTraceElements.isEmpty()) {
             sb.append("Empty");
@@ -96,7 +97,7 @@ public class ThreadLockInfo {
                 sb.append(stackTraceElement).append("\n");
             }
         }
-        sb.append("\nblockedOn: ").append(LockUtils.formatLock(lockBlockedOn)).append("\n]");
+        sb.append("\n]");
         return sb.toString();
     }
 }
