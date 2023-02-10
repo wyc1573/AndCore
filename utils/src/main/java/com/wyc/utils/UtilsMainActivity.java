@@ -2,7 +2,9 @@ package com.wyc.utils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ public class UtilsMainActivity extends AppCompatActivity {
     Button generic;
     Button dex2oat;
     Button pid;
+    Button ipc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +29,11 @@ public class UtilsMainActivity extends AppCompatActivity {
         generic = findViewById(R.id.utils_test);
         dex2oat = findViewById(R.id.utils_dex2oat);
         pid = findViewById(R.id.utils_mypid);
+        ipc = findViewById(R.id.utils_ipc_activity);
         generic.setOnClickListener(new GenericClickListener());
         dex2oat.setOnClickListener(new Dex2oatClickListener());
         pid.setOnClickListener(new MyPidClickListener());
+        ipc.setOnClickListener(new IpcClickListener());
         JNI.setPath(this.getFilesDir().getAbsolutePath());
     }
 
@@ -48,6 +53,14 @@ public class UtilsMainActivity extends AppCompatActivity {
             Log.d(TAG, "click pid btn!");
             int pid = android.os.Process.myPid();
             Toast.makeText(UtilsMainActivity.this, "pid = " + pid, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    class IpcClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "click ipc btn.");
+            startActivity(new Intent(UtilsMainActivity.this, IPCActivity.class));
         }
     }
 

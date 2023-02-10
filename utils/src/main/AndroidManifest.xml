@@ -4,9 +4,27 @@
 
     <application>
         <activity
-            android:name=".UtilsMainActivity"
+            android:name=".IPCActivity"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
         </activity>
+
+        <service
+            android:name=".ipc.LocalService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".ipc.RemoteService"
+            android:enabled="true"
+            android:exported="true"
+            android:isolatedProcess="true"
+            android:process=":remote" />
+
+        <activity
+            android:name=".UtilsMainActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

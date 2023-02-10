@@ -4,57 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UtilsMainActivity">
-
+    tools:context=".IPCActivity">
     <Button
-        android:id="@+id/utils_test"
+        android:id="@+id/utils_start_remote"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:padding = "5dp"
-        android:text="generic test"
+        android:text="start remote service"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <Button
-        android:id="@+id/utils_dex2oat"
+        android:id="@+id/utils_remote_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:padding = "5dp"
-        android:text="dex opt"
-        app:layout_constraintLeft_toLeftOf="@+id/utils_test"
-        app:layout_constraintRight_toRightOf="@+id/utils_test"
-        app:layout_constraintTop_toBottomOf="@+id/utils_test"/>
+        android:text="remote action"
+        app:layout_constraintLeft_toLeftOf="@+id/utils_start_remote"
+        app:layout_constraintRight_toRightOf="@+id/utils_start_remote"
+        app:layout_constraintTop_toBottomOf="@+id/utils_start_remote"/>
 
     <Button
-        android:id="@+id/utils_mypid"
+        android:id="@+id/utils_start_local"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:padding = "5dp"
-        android:text="my pid"
-        app:layout_constraintLeft_toLeftOf="@+id/utils_dex2oat"
-        app:layout_constraintRight_toRightOf="@+id/utils_dex2oat"
-        app:layout_constraintTop_toBottomOf="@+id/utils_dex2oat"/>
+        android:text="start local service"
+        app:layout_constraintLeft_toLeftOf="@+id/utils_remote_action"
+        app:layout_constraintRight_toRightOf="@+id/utils_remote_action"
+        app:layout_constraintTop_toBottomOf="@+id/utils_remote_action"/>
 
     <Button
-        android:id="@+id/utils_ipc_activity"
+        android:id="@+id/utils_local_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:padding = "5dp"
-        android:text="ipc"
-        app:layout_constraintLeft_toLeftOf="@+id/utils_mypid"
-        app:layout_constraintRight_toRightOf="@+id/utils_mypid"
-        app:layout_constraintTop_toBottomOf="@+id/utils_mypid"/>
+        android:text="local action"
+        app:layout_constraintLeft_toLeftOf="@+id/utils_start_local"
+        app:layout_constraintRight_toRightOf="@+id/utils_start_local"
+        app:layout_constraintTop_toBottomOf="@+id/utils_start_local"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
