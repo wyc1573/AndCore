@@ -17,6 +17,7 @@ public class UtilsMainActivity extends AppCompatActivity {
     public static final String TAG = "AndCore.Utils";
     Button generic;
     Button dex2oat;
+    Button pid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +25,10 @@ public class UtilsMainActivity extends AppCompatActivity {
         setContentView(R.layout.utils_main);
         generic = findViewById(R.id.utils_test);
         dex2oat = findViewById(R.id.utils_dex2oat);
+        pid = findViewById(R.id.utils_mypid);
         generic.setOnClickListener(new GenericClickListener());
         dex2oat.setOnClickListener(new Dex2oatClickListener());
+        pid.setOnClickListener(new MyPidClickListener());
         JNI.setPath(this.getFilesDir().getAbsolutePath());
     }
 
@@ -36,6 +39,15 @@ public class UtilsMainActivity extends AppCompatActivity {
             JNI.test(Cmd.GENERIC);
             Toast.makeText(UtilsMainActivity.this,
                     "adb logcat -s AndCore", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    class MyPidClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "click pid btn!");
+            int pid = android.os.Process.myPid();
+            Toast.makeText(UtilsMainActivity.this, "pid = " + pid, Toast.LENGTH_SHORT).show();
         }
     }
 

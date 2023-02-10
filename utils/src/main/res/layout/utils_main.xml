@@ -32,4 +32,17 @@
         app:layout_constraintRight_toRightOf="@+id/utils_test"
         app:layout_constraintTop_toBottomOf="@+id/utils_test"/>
 
+    <Button
+        android:id="@+id/utils_mypid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:padding = "5dp"
+        android:text="my pid"
+        app:layout_constraintLeft_toLeftOf="@+id/utils_dex2oat"
+        app:layout_constraintRight_toRightOf="@+id/utils_dex2oat"
+        app:layout_constraintTop_toBottomOf="@+id/utils_dex2oat"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
