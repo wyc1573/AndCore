@@ -11,10 +11,7 @@
                 android:value="" />
         </activity>
 
-        <service
-            android:name=".ipc.LocalService"
-            android:enabled="true"
-            android:exported="true" />
+        <service android:name=".ipc.LocalService" />
         <service
             android:name=".ipc.RemoteService"
             android:enabled="true"

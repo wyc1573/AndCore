@@ -8,10 +8,12 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.wyc.utils.ipc.IRemoteService;
 import com.wyc.utils.ipc.LocalService;
 import com.wyc.utils.ipc.RemoteService;
 
@@ -21,15 +23,14 @@ public class IPCActivity extends AppCompatActivity {
     Button remoteAction;
     Button startLocal;
     Button localAction;
-
-    RemoteService remoteService;
+    IRemoteService remoteService;
     LocalService localService;
 
     private ServiceConnection remoteConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             Log.d(TAG, "remote onServiceConnected");
-            remoteService = (RemoteService) iBinder;
+            remoteService = IRemoteService.Stub.asInterface(iBinder);
         }
 
         @Override
@@ -42,7 +43,7 @@ public class IPCActivity extends AppCompatActivity {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             Log.d(TAG, "local onServiceConnected");
-            localService = (LocalService) iBinder;
+            localService = ((LocalService.InnerBinder) iBinder).getService();
         }
 
         @Override
@@ -69,7 +70,8 @@ public class IPCActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "StartRemoteClickListener");
-            bindService(new Intent("com.wyc.utils.ipc.RemoteService"), remoteConnection, Context.BIND_AUTO_CREATE);
+            Intent intent = new Intent(IPCActivity.this, RemoteService.class);
+            bindService(intent, remoteConnection, Context.BIND_AUTO_CREATE);
         }
     }
 
@@ -77,7 +79,15 @@ public class IPCActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "RemoteActionClickListener");
-            remoteService.action();
+            if (remoteService == null) {
+                Log.d(TAG, "remoteService is null, return!");
+                return;
+            }
+            try {
+                Log.d(TAG, "remote pid = " + remoteService.getPid());
+            } catch (RemoteException e) {
+                Log.d(TAG, "", e);
+            }
         }
     }
 
@@ -85,7 +95,8 @@ public class IPCActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "StartLocalClickListener");
-            bindService(new Intent("com.wyc.utils.ipc.LocalService"), localConnection, Context.BIND_AUTO_CREATE);
+            Intent intent = new Intent(IPCActivity.this, LocalService.class);
+            bindService(intent, localConnection, Context.BIND_AUTO_CREATE);
         }
     }
 
@@ -93,6 +104,11 @@ public class IPCActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "LocalActionClickListener");
+            if (localService == null) {
+                Log.d(TAG, "localService is null, return!");
+                return;
+            }
+            Log.d(TAG, "local pid = " + localService.getPid());
         }
     }
 }

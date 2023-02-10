@@ -2,8 +2,8 @@ package com.wyc.utils.ipc;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Binder;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 
 public class RemoteService extends Service {
@@ -13,21 +13,21 @@ public class RemoteService extends Service {
     public RemoteService() {
     }
 
-    public class InnerBinder extends Binder {
-        RemoteService getService() {
-            return RemoteService.this;
+    public class InnerBinder extends IRemoteService.Stub {
+        @Override
+        public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
+        }
+
+        @Override
+        public int getPid() throws RemoteException {
+            Log.d(TAG, "remote getPid = " + android.os.Process.myPid());
+            return android.os.Process.myPid();
         }
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
+        Log.d(TAG, "RemoteService onBind");
+        return binder;
     }
-
-    public void action() {
-        Log.d(TAG, "RemoteService action");
-
-    }
-
 }
