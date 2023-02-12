@@ -10,6 +10,7 @@ import android.widget.Button;
 
 import com.wyc.bitmap.BimtapMainActivity;
 import com.wyc.qhook.QHookActivity;
+import com.wyc.utils.GraphicsActivity;
 import com.wyc.utils.UtilsMainActivity;
 
 public class HomeActivity extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class HomeActivity extends AppCompatActivity {
     Button btn_native_bitmap;
     Button btn_qhook;
     Button btn_utils;
+    Button btn_graphics;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,8 @@ public class HomeActivity extends AppCompatActivity {
         btn_utils.setOnClickListener(new UtilsClickListener());
         btn_qhook = findViewById(R.id.home_qhook);
         btn_qhook.setOnClickListener(new QHookClickListener());
+        btn_graphics = findViewById(R.id.home_graphics);
+        btn_graphics.setOnClickListener(new GraphicsClickListener());
     }
 
     class BitmapClickListener implements View.OnClickListener {
@@ -50,6 +54,14 @@ public class HomeActivity extends AppCompatActivity {
         public void onClick(View view) {
             Log.d(TAG, "click qhook button.");
             startActivity(new Intent(HomeActivity.this, QHookActivity.class));
+        }
+    }
+
+    class GraphicsClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "click qhook button.");
+            startActivity(new Intent(HomeActivity.this, GraphicsActivity.class));
         }
     }
 }
