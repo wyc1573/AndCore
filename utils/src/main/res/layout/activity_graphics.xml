@@ -30,4 +30,17 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/utils_ui_surfaceview"/>
+
+    <Button
+        android:id="@+id/utils_ui_texture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:padding = "5dp"
+        android:text="Texture"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/utils_ui_glsurfaceview"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
