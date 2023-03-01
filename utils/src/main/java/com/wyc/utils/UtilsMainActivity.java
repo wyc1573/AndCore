@@ -2,7 +2,6 @@ package com.wyc.utils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.wyc.utils.dexopt.DexOptUtils;
+import com.wyc.utils.test.UtilsIPCActivity;
 
 public class UtilsMainActivity extends AppCompatActivity {
     public static final String TAG = "AndCore.Utils";
@@ -60,7 +60,7 @@ public class UtilsMainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "click ipc btn.");
-            startActivity(new Intent(UtilsMainActivity.this, IPCActivity.class));
+            startActivity(new Intent(UtilsMainActivity.this, UtilsIPCActivity.class));
         }
     }
 

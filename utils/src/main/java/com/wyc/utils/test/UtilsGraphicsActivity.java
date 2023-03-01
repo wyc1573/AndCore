@@ -1,4 +1,4 @@
-package com.wyc.utils;
+package com.wyc.utils.test;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class GraphicsActivity extends AppCompatActivity {
+import com.wyc.utils.R;
+
+public class UtilsGraphicsActivity extends AppCompatActivity {
     Button surfaceViewBtn;
     Button glSurfaceViewBtn;
     Button textureBtn;
@@ -15,7 +17,7 @@ public class GraphicsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_graphics);
+        setContentView(R.layout.utils_graphics);
         surfaceViewBtn = findViewById(R.id.utils_ui_surfaceview);
         glSurfaceViewBtn = findViewById(R.id.utils_ui_glsurfaceview);
         textureBtn = findViewById(R.id.utils_ui_texture);
@@ -27,7 +29,7 @@ public class GraphicsActivity extends AppCompatActivity {
     class SurfaceViewClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            startActivity(new Intent(GraphicsActivity.this, SurfaceViewActivity.class));
+            startActivity(new Intent(UtilsGraphicsActivity.this, UtilsSurfaceViewActivity.class));
         }
     }
 
@@ -35,7 +37,7 @@ public class GraphicsActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            startActivity(new Intent(GraphicsActivity.this, GlSurfaceViewActivity.class));
+            startActivity(new Intent(UtilsGraphicsActivity.this, UtilsGlSurfaceViewActivity.class));
         }
     }
 
@@ -43,7 +45,7 @@ public class GraphicsActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View view) {
-            startActivity(new Intent(GraphicsActivity.this, SurfaceTextureActivity.class));
+            startActivity(new Intent(UtilsGraphicsActivity.this, UtilsSurfaceTextureActivity.class));
         }
     }
 }

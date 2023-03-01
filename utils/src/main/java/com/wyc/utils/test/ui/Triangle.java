@@ -1,4 +1,4 @@
-package com.wyc.utils.ui;
+package com.wyc.utils.test.ui;
 
 import android.opengl.GLES20;
 

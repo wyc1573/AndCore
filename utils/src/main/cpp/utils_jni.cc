@@ -32,24 +32,32 @@
 #include "test/test_card_table.h"
 #include "test/test_jni_helper.h"
 #include "jni-helper/core_jni_helpers.h"
-
+#include "test/socket/socket_sample.h"
 #define CASE(n) LOG(INFO) << "============" << #n << "==============";
 
 const char* env_test_path = nullptr;
+volatile bool init_ = false;
+
+void initLog() {
+    if (!init_) {
+        const char*  argv[] = {"AndCore"};
+        android::base::InitLogging(const_cast<char**>(argv));
+        init_ = true;
+    }
+}
 
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_wyc_utils_JNI_setPath(JNIEnv *env, jclass clazz, jstring path) {
+    initLog();
     env_test_path = env->GetStringUTFChars(path, NULL);
     LOG(INFO) << "env_test_path: " << env_test_path;
 }
 
-
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_wyc_utils_JNI_test(JNIEnv *env, jclass clazz, jint mode) {
-    const char*  argv[] = {"AndCore"};
-    android::base::InitLogging(const_cast<char**>(argv));
+    initLog();
 
     CASE(logging);
     test_logging();
@@ -130,4 +138,59 @@ Java_com_wyc_utils_JNI_test(JNIEnv *env, jclass clazz, jint mode) {
     test_jni_helper(env);
 }
 
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_socketNormal(JNIEnv *env, jclass clazz) {
+    initLog();
+    LOG(INFO) << __FUNCTION__ ;
+    test_normal_socket();
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_socketDiagram(JNIEnv *env, jclass clazz) {
+    initLog();
+    LOG(INFO) << __FUNCTION__;
+    test_diagram_socket();
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_socketMsg(JNIEnv *env, jclass clazz) {
+    initLog();
+    LOG(INFO) << __FUNCTION__;
+    test_msg_socket();
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_socketPair(JNIEnv *env, jclass clazz) {
+    initLog();
+    LOG(INFO) << __FUNCTION__;
+    test_socket_pair();
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_socketPipe(JNIEnv *env, jclass clazz) {
+    initLog();
+    LOG(INFO) << __FUNCTION__;
+    test_socket_pipe();
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_eventFd(JNIEnv *env, jclass clazz) {
+    initLog();
+    LOG(INFO) << __FUNCTION__ ;
+    test_eventfd();
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_epoll(JNIEnv *env, jclass clazz) {
+    initLog();
+    LOG(INFO) << __FUNCTION__ ;
+    test_epoll();
+}
 #undef CASE

@@ -1,4 +1,4 @@
-package com.wyc.utils;
+package com.wyc.utils.test;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +15,7 @@ import android.widget.FrameLayout;
 
 import java.io.IOException;
 
-public class SurfaceTextureActivity extends AppCompatActivity implements TextureView.SurfaceTextureListener {
+public class UtilsSurfaceTextureActivity extends AppCompatActivity implements TextureView.SurfaceTextureListener {
     private static final String TAG = "AndCore.View";
     private Camera mCamera;
     private TextureView mTextureView;
@@ -30,7 +30,7 @@ public class SurfaceTextureActivity extends AppCompatActivity implements Texture
 
     @Override
     public void onSurfaceTextureAvailable(@NonNull SurfaceTexture surfaceTexture, int width, int height) {
-        ActivityCompat.requestPermissions(SurfaceTextureActivity.this, new String[]{ Manifest.permission.CAMERA }, 5);
+        ActivityCompat.requestPermissions(UtilsSurfaceTextureActivity.this, new String[]{ Manifest.permission.CAMERA }, 5);
         try {
             mCamera = Camera.open();
             mTextureView.setLayoutParams(new FrameLayout.LayoutParams(

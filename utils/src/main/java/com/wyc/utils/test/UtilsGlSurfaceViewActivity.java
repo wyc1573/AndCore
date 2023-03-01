@@ -1,11 +1,11 @@
-package com.wyc.utils;
+package com.wyc.utils.test;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.wyc.utils.ui.DemoGlSurfaceView;
+import com.wyc.utils.test.ui.DemoGlSurfaceView;
 
-public class GlSurfaceViewActivity extends AppCompatActivity {
+public class UtilsGlSurfaceViewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

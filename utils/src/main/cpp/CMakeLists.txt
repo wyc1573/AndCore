@@ -28,7 +28,8 @@ add_library(Utils
         gc/card_table.cc
         base/scoped_arena_allocator.cc
         unix_file/random_access_file_utils.cc
-        unix_file/fd_file.cc)
+        unix_file/fd_file.cc
+        test/socket/socket_sample.cc)
 
 find_library(log-lib
         log)

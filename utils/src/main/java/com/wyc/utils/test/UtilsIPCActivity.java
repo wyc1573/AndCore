@@ -1,4 +1,4 @@
-package com.wyc.utils;
+package com.wyc.utils.test;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,16 +13,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.wyc.utils.R;
 import com.wyc.utils.ipc.IRemoteService;
-import com.wyc.utils.ipc.LocalService;
-import com.wyc.utils.ipc.RemoteService;
 
-public class IPCActivity extends AppCompatActivity {
+public class UtilsIPCActivity extends AppCompatActivity {
     private static final String TAG = "AndCore.Service";
     Button startRemote;
     Button remoteAction;
     Button startLocal;
     Button localAction;
+    Button socket;
     IRemoteService remoteService;
     LocalService localService;
 
@@ -55,22 +55,24 @@ public class IPCActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.ipc_activity);
+        setContentView(R.layout.utils_ipc);
         startRemote = findViewById(R.id.utils_start_remote);
         remoteAction = findViewById(R.id.utils_remote_action);
         startLocal = findViewById(R.id.utils_start_local);
         localAction = findViewById(R.id.utils_local_action);
+        socket = findViewById(R.id.utils_socket);
         startRemote.setOnClickListener(new StartRemoteClickListener());
         startLocal.setOnClickListener(new StartLocalClickListener());
         remoteAction.setOnClickListener(new RemoteActionClickListener());
         localAction.setOnClickListener(new LocalActionClickListener());
+        socket.setOnClickListener(new SocketClickListener());
     }
 
     class StartRemoteClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "StartRemoteClickListener");
-            Intent intent = new Intent(IPCActivity.this, RemoteService.class);
+            Intent intent = new Intent(UtilsIPCActivity.this, RemoteService.class);
             bindService(intent, remoteConnection, Context.BIND_AUTO_CREATE);
         }
     }
@@ -95,7 +97,7 @@ public class IPCActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             Log.d(TAG, "StartLocalClickListener");
-            Intent intent = new Intent(IPCActivity.this, LocalService.class);
+            Intent intent = new Intent(UtilsIPCActivity.this, LocalService.class);
             bindService(intent, localConnection, Context.BIND_AUTO_CREATE);
         }
     }
@@ -109,6 +111,14 @@ public class IPCActivity extends AppCompatActivity {
                 return;
             }
             Log.d(TAG, "local pid = " + localService.getPid());
+        }
+    }
+
+    class SocketClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "SocketClickListener");
+            startActivity(new Intent(UtilsIPCActivity.this, UtilsSocketActivity.class));
         }
     }
 }

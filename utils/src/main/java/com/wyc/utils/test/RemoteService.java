@@ -1,10 +1,12 @@
-package com.wyc.utils.ipc;
+package com.wyc.utils.test;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.wyc.utils.ipc.IRemoteService;
 
 public class RemoteService extends Service {
     private final static String TAG = "AndCore.Service";

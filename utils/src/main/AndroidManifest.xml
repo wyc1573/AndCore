@@ -2,50 +2,67 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wyc.utils">
 
-    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera"/>
+
+    <uses-feature android:name="android.hardware.camera" />
 
     <application>
         <activity
-            android:name=".SurfaceTextureActivity"
+            android:name=".test.UtilsCppActivity"
+            android:exported="false" />
+        <activity
+            android:name=".test.UtilsUnixActivity"
+            android:exported="false" />
+        <activity
+            android:name=".test.UtilsSocketActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".GlSurfaceViewActivity"
+            android:name=".test.UtilsSurfaceTextureActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SurfaceViewActivity"
+            android:name=".test.UtilsGlSurfaceViewActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".GraphicsActivity"
+            android:name=".test.UtilsSurfaceViewActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".IPCActivity"
+            android:name=".test.UtilsGraphicsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".test.UtilsIPCActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
 
-        <service android:name=".ipc.LocalService" />
+        <service android:name=".test.LocalService" />
         <service
-            android:name=".ipc.RemoteService"
+            android:name=".test.RemoteService"
             android:enabled="true"
             android:exported="true"
             android:isolatedProcess="true"
