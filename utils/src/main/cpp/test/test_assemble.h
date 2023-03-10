@@ -13,15 +13,15 @@ void funcA() {
                 "pc_plus_4_1:\n\t"
                 "nop\n\t"
                 : "=r" (pc));
-        LOG(INFO) << __FUNCTION__ << " {pc: " << android::base::StringPrintf("0x%x", pc)
-                  << ", __builtin_return_address(0): " << android::base::StringPrintf("0x%x", __builtin_return_address(0)) <<"}";;
+        LOG(INFO) << __FUNCTION__ << " {pc: " << android::base::StringPrintf("0x%lx", pc)
+                  << ", __builtin_return_address(0): " << android::base::StringPrintf("0x%lx", __builtin_return_address(0)) <<"}";;
         throw "test";
     } catch (...) {
         unsigned long lr;
         __asm__("mov %0, x30\n\t"
                 : "=r" (lr));
-        LOG(INFO) << __FUNCTION__ << " In Catch: {assemble manual LR: " << android::base::StringPrintf("0x%x", lr)
-                  << ", __builtin_return_address(0): " << android::base::StringPrintf("0x%x", __builtin_return_address(0)) <<"}";
+        LOG(INFO) << __FUNCTION__ << " In Catch: {assemble manual LR: " << android::base::StringPrintf("0x%lx", lr)
+                  << ", __builtin_return_address(0): " << android::base::StringPrintf("0x%lx", __builtin_return_address(0)) <<"}";
     }
 }
 
@@ -31,8 +31,8 @@ void funcB() {
             "pc_plus_4_2:\n\t"
             "nop\n\t"
             : "=r" (pc));
-    LOG(INFO) << __FUNCTION__ << " {pc: " << android::base::StringPrintf("0x%x", pc)
-              << ", __builtin_return_address(0): " << android::base::StringPrintf("0x%x", __builtin_return_address(0)) <<"}";
+    LOG(INFO) << __FUNCTION__ << " {pc: " << android::base::StringPrintf("0x%lx", pc)
+              << ", __builtin_return_address(0): " << android::base::StringPrintf("0x%lx", __builtin_return_address(0)) <<"}";
     funcA();
 }
 
@@ -42,8 +42,8 @@ void funcC() {
             "pc_plus_4_3:\n\t"
             "nop\n\t"
             : "=r" (pc));
-    LOG(INFO) << __FUNCTION__ << " {pc: " << android::base::StringPrintf("0x%x", pc)
-              << ", __builtin_return_address(0): " << android::base::StringPrintf("0x%x", __builtin_return_address(0)) <<"}";
+    LOG(INFO) << __FUNCTION__ << " {pc: " << android::base::StringPrintf("0x%lx", pc)
+              << ", __builtin_return_address(0): " << android::base::StringPrintf("0x%lx", __builtin_return_address(0)) <<"}";
     funcB();
 }
 
