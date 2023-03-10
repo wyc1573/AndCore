@@ -18,6 +18,7 @@
 #include "test/test_stl-util.h"
 #include "test/test_iter_range.h"
 #include "test/test_util.h"
+#include "test/test_assemble.h"
 #include "test/test_enum.h"
 #include "test/test_unix_file.h"
 #include "test/test_mem_map.h"
@@ -138,6 +139,9 @@ Java_com_wyc_utils_JNI_test(JNIEnv *env, jclass clazz, jint mode) {
 
     CASE(JniHelper)
     test_jni_helper(env);
+
+    CASE(TestAssemble)
+    test_assemble();
 }
 
 extern "C"
