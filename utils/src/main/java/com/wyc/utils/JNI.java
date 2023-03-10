@@ -20,4 +20,6 @@ public class JNI {
     public static native void socketPipe();
     public static native void eventFd();
     public static native void epoll();
+
+    public static native void cppObjModel();
 }

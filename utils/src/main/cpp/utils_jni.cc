@@ -33,6 +33,8 @@
 #include "test/test_jni_helper.h"
 #include "jni-helper/core_jni_helpers.h"
 #include "test/socket/socket_sample.h"
+#include "test/cpp/cpp_sample.h"
+
 #define CASE(n) LOG(INFO) << "============" << #n << "==============";
 
 const char* env_test_path = nullptr;
@@ -192,5 +194,13 @@ Java_com_wyc_utils_JNI_epoll(JNIEnv *env, jclass clazz) {
     initLog();
     LOG(INFO) << __FUNCTION__ ;
     test_epoll();
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_cppObjModel(JNIEnv *env, jclass clazz) {
+    initLog();
+    LOG(INFO) << __FUNCTION__ ;
+    cpp_obj_model();
 }
 #undef CASE

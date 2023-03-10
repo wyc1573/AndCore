@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".test.UtilsCppActivity">
     <Button
-        android:id="@+id/utils_cpp"
+        android:id="@+id/utils_cpp_obj"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:padding = "5dp"
-        android:text="cpp"
+        android:text="object model"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
