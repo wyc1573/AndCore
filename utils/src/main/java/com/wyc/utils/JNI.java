@@ -22,4 +22,5 @@ public class JNI {
     public static native void epoll();
 
     public static native void cppObjModel();
+    public static native void cppMisc();
 }

@@ -6,5 +6,5 @@
 #define ANDCORE_CPP_SAMPLE_H
 
 void cpp_obj_model();
-
+void cpp_misc();
 #endif //ANDCORE_CPP_SAMPLE_H

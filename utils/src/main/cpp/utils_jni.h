@@ -45,3 +45,7 @@ Java_com_wyc_utils_JNI_epoll(JNIEnv *env, jclass clazz);
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_wyc_utils_JNI_cppObjModel(JNIEnv *env, jclass clazz);
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_cppMisc(JNIEnv *env, jclass clazz);

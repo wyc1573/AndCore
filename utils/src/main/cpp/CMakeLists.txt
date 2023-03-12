@@ -30,7 +30,8 @@ add_library(Utils
         unix_file/random_access_file_utils.cc
         unix_file/fd_file.cc
         test/socket/socket_sample.cc
-        test/cpp/cpp_sample.cc)
+        test/cpp/cpp_sample.cc
+        test/cpp/cpp_misc.cc)
 
 find_library(log-lib
         log)

@@ -207,4 +207,10 @@ Java_com_wyc_utils_JNI_cppObjModel(JNIEnv *env, jclass clazz) {
     LOG(INFO) << __FUNCTION__ ;
     cpp_obj_model();
 }
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_cppMisc(JNIEnv *env, jclass clazz) {
+    cpp_misc();
+}
 #undef CASE
