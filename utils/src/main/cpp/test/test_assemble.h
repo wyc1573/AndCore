@@ -20,8 +20,15 @@ void funcA() {
         unsigned long lr;
         __asm__("mov %0, x30\n\t"
                 : "=r" (lr));
+        unsigned long fp;
+        __asm__("mov %0, x29\n\t"
+                : "=r" (fp));
+        unsigned long sp;
+        __asm__("mov %0, sp\n\t"
+                : "=r" (sp));
         LOG(INFO) << __FUNCTION__ << " In Catch: {assemble manual LR: " << android::base::StringPrintf("0x%lx", lr)
-                  << ", __builtin_return_address(0): " << android::base::StringPrintf("0x%lx", __builtin_return_address(0)) <<"}";
+                  << ", __builtin_return_address(0): " << android::base::StringPrintf("0x%lx", __builtin_return_address(0))
+                  << ", fp: " << android::base::StringPrintf("0x%lx", fp) << ", sp:" << android::base::StringPrintf("0x%lx", sp) <<"}";
     }
 }
 
