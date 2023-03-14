@@ -36,6 +36,7 @@
 #include "test/socket/socket_sample.h"
 #include "test/cpp/cpp_sample.h"
 #include "test/test_rand.h"
+#include "test/test_statistics.h"
 
 #define CASE(n) LOG(INFO) << "============" << #n << "==============";
 
@@ -146,6 +147,9 @@ Java_com_wyc_utils_JNI_test(JNIEnv *env, jclass clazz, jint mode) {
 
     CASE(RAND)
     test_random();
+
+    CASE(STATISTICS)
+    test_statistics();
 }
 
 extern "C"
@@ -218,5 +222,13 @@ Java_com_wyc_utils_JNI_cppMisc(JNIEnv *env, jclass clazz) {
     initLog();
     LOG(INFO) << __FUNCTION__ ;
     cpp_misc();
+}
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_statistics(JNIEnv *env, jclass clazz) {
+    initLog();
+    LOG(INFO) << __FUNCTION__ ;
+    test_statistics();
 }
 #undef CASE

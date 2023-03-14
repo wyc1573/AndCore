@@ -13,7 +13,7 @@ inline void test_random() {
     std::vector<double> vec_normal;
     UniformRand(0, 100, vec_uniform, 10);
     NormalRand(0, 1, vec_normal, 10);
-    LOG(INFO) << "均匀分布[0-100]:";
+
     std::string uniform_str;
     bool flag = false;
     for (auto i : vec_uniform) {
@@ -24,8 +24,7 @@ inline void test_random() {
             uniform_str = android::base::StringPrintf("%s, %d", uniform_str.c_str(), i);
         }
     }
-    LOG(INFO) << "{ " << uniform_str << " }";
-    LOG(INFO) << "正态分布[0,1]:";
+    LOG(INFO) << "生成均匀分布[0-100]的数:{ " << uniform_str << " }";
     std::string normal_str;
     flag = false;
     for (auto i : vec_normal) {
@@ -36,5 +35,5 @@ inline void test_random() {
             normal_str = android::base::StringPrintf("%f", i);
         }
     }
-    LOG(INFO) << "{ " << normal_str << " }";
+    LOG(INFO) << "生成正态分布{平均值=0， 标准差=1}的数: {" << normal_str << " }";
 }

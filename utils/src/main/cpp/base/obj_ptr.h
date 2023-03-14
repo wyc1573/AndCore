@@ -50,7 +50,7 @@ class ObjPtr {
       : reference_(0u) {}
 
   template <typename Type,
-            typename = typename std::enable_if_t<std::is_base_of_v<MirrorType, Type>>>
+              typename = typename std::enable_if_t<std::is_base_of_v<MirrorType, Type>>>
   OBJPTR_INLINE ObjPtr(Type* ptr);
 
   template <typename Type,

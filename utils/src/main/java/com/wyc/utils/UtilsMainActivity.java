@@ -24,6 +24,7 @@ public class UtilsMainActivity extends AppCompatActivity {
     Button ipc;
 
     Button bayes;
+    Button statistics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +35,13 @@ public class UtilsMainActivity extends AppCompatActivity {
         pid = findViewById(R.id.utils_mypid);
         ipc = findViewById(R.id.utils_ipc_activity);
         bayes = findViewById(R.id.utils_bayes);
+        statistics = findViewById(R.id.utils_statistics);
         generic.setOnClickListener(new GenericClickListener());
         dex2oat.setOnClickListener(new Dex2oatClickListener());
         pid.setOnClickListener(new MyPidClickListener());
         ipc.setOnClickListener(new IpcClickListener());
         bayes.setOnClickListener(new BayesClickListener());
+        statistics.setOnClickListener(new StatisticsClickListener());
         JNI.setPath(this.getFilesDir().getAbsolutePath());
     }
 
@@ -96,6 +99,12 @@ public class UtilsMainActivity extends AppCompatActivity {
         }
     }
 
+    class StatisticsClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            JNI.statistics();
+        }
+    }
     /**
      * @param path eg. /data/app/com.wyc.andcore-swEXFEdZCjv3_HUahATKWg==/base.apk
      */

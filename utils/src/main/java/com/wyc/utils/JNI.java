@@ -23,4 +23,5 @@ public class JNI {
 
     public static native void cppObjModel();
     public static native void cppMisc();
+    public static native void statistics();
 }

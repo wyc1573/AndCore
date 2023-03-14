@@ -71,4 +71,18 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/utils_ipc_activity"/>
 
+
+    <Button
+        android:id="@+id/utils_statistics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:padding = "5dp"
+        android:text="statistics test"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/utils_bayes"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
