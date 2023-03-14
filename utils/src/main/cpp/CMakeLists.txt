@@ -23,6 +23,7 @@ add_library(Utils
         base/thread_pool.cc
         base/arena_allocator.cc
         base/malloc_arena_pool.cc
+        base/rand_util.cc
         gc/bitmap.cc
         gc/space_bitmap.cc
         gc/card_table.cc

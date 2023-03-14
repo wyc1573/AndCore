@@ -35,6 +35,7 @@
 #include "jni-helper/core_jni_helpers.h"
 #include "test/socket/socket_sample.h"
 #include "test/cpp/cpp_sample.h"
+#include "test/test_rand.h"
 
 #define CASE(n) LOG(INFO) << "============" << #n << "==============";
 
@@ -142,6 +143,9 @@ Java_com_wyc_utils_JNI_test(JNIEnv *env, jclass clazz, jint mode) {
 
     CASE(TestAssemble)
     test_assemble();
+
+    CASE(RAND)
+    test_random();
 }
 
 extern "C"
