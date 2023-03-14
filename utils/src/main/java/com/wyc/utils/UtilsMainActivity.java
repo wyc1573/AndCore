@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.wyc.utils.dexopt.DexOptUtils;
+import com.wyc.utils.test.BayesUtil;
 import com.wyc.utils.test.UtilsIPCActivity;
 
 public class UtilsMainActivity extends AppCompatActivity {
@@ -22,6 +23,8 @@ public class UtilsMainActivity extends AppCompatActivity {
     Button pid;
     Button ipc;
 
+    Button bayes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,12 +33,17 @@ public class UtilsMainActivity extends AppCompatActivity {
         dex2oat = findViewById(R.id.utils_dex2oat);
         pid = findViewById(R.id.utils_mypid);
         ipc = findViewById(R.id.utils_ipc_activity);
+        bayes = findViewById(R.id.utils_bayes);
         generic.setOnClickListener(new GenericClickListener());
         dex2oat.setOnClickListener(new Dex2oatClickListener());
         pid.setOnClickListener(new MyPidClickListener());
         ipc.setOnClickListener(new IpcClickListener());
+        bayes.setOnClickListener(new BayesClickListener());
         JNI.setPath(this.getFilesDir().getAbsolutePath());
     }
+
+
+
 
     class GenericClickListener implements View.OnClickListener {
         @Override
@@ -44,6 +52,7 @@ public class UtilsMainActivity extends AppCompatActivity {
             JNI.test(Cmd.GENERIC);
             Toast.makeText(UtilsMainActivity.this,
                     "adb logcat -s AndCore", Toast.LENGTH_LONG).show();
+
         }
     }
 
@@ -77,6 +86,13 @@ public class UtilsMainActivity extends AppCompatActivity {
             } catch (PackageManager.NameNotFoundException e) {
                 Log.d(TAG, "", e);
             }
+        }
+    }
+
+    class BayesClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            BayesUtil.mock();
         }
     }
 
