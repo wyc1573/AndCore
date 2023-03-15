@@ -37,6 +37,7 @@
 #include "test/cpp/cpp_sample.h"
 #include "test/test_rand.h"
 #include "test/test_statistics.h"
+#include "test/test_futex.h"
 
 #define CASE(n) LOG(INFO) << "============" << #n << "==============";
 
@@ -150,6 +151,9 @@ Java_com_wyc_utils_JNI_test(JNIEnv *env, jclass clazz, jint mode) {
 
     CASE(STATISTICS)
     test_statistics();
+
+    CASE(FUTEX)
+    test_futex();
 }
 
 extern "C"
