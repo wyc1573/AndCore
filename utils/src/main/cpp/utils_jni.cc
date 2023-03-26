@@ -38,6 +38,7 @@
 #include "test/test_rand.h"
 #include "test/test_statistics.h"
 #include "test/test_futex.h"
+#include "test/test_mem_model.h"
 
 #define CASE(n) LOG(INFO) << "============" << #n << "==============";
 
@@ -235,4 +236,13 @@ Java_com_wyc_utils_JNI_statistics(JNIEnv *env, jclass clazz) {
     LOG(INFO) << __FUNCTION__ ;
     test_statistics();
 }
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_cppConcurrency(JNIEnv *env, jclass clazz) {
+    initLog();
+    LOG(INFO) << __FUNCTION__ ;
+    test_cpp_concurrency();
+}
+
 #undef CASE

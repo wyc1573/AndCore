@@ -17,6 +17,20 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/utils_cpp_concurrency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:padding = "5dp"
+        android:text="ConCurrency"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/utils_cpp_obj"/>
+
     <Button
         android:id="@+id/utils_cpp_misc"
         android:layout_width="match_parent"
@@ -28,5 +42,5 @@
         android:text="misc"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/utils_cpp_obj"/>
+        app:layout_constraintTop_toBottomOf="@id/utils_cpp_concurrency"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

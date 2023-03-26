@@ -165,6 +165,15 @@ void test_futex_cmp_requeue() {
     syscall(SYS_futex, &futex_var_, FUTEX_WAIT_PRIVATE, 0, nullptr, nullptr, 0);
 }
 
+static const int& ref() {
+    const static int& s_val_ = *new int(1);
+    return s_val_;
+}
+
+void test_ref() {
+    LOG(INFO) << &ref() << " == " << &ref();
+}
+
 void cpp_misc() {
     test_va(3, 1, 2, 3);
     test_objPtr();
@@ -186,4 +195,5 @@ void cpp_misc() {
         tArr[i].join();
     }
 
+    test_ref();
 }

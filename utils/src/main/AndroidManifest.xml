@@ -65,7 +65,7 @@
             android:name=".test.RemoteService"
             android:enabled="true"
             android:exported="true"
-            android:isolatedProcess="true"
+            android:isolatedProcess="false"
             android:process=":remote" />
 
         <activity

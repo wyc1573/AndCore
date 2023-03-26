@@ -11,6 +11,7 @@ import com.wyc.utils.R;
 
 public class UtilsCppActivity extends AppCompatActivity {
     Button btn_objModel;
+    Button btn_cppConcurrency;
     Button btn_misc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,8 @@ public class UtilsCppActivity extends AppCompatActivity {
         btn_objModel.setOnClickListener(new ObjModelClickListener());
         btn_misc = findViewById(R.id.utils_cpp_misc);
         btn_misc.setOnClickListener(new MiscClickListener());
+        btn_cppConcurrency = findViewById(R.id.utils_cpp_concurrency);
+        btn_cppConcurrency.setOnClickListener(new CppConcurrencyClickListener());
     }
 
     class ObjModelClickListener implements View.OnClickListener {
@@ -33,6 +36,13 @@ public class UtilsCppActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             JNI.cppMisc();
+        }
+    }
+
+    class CppConcurrencyClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            JNI.cppConcurrency();
         }
     }
 }
