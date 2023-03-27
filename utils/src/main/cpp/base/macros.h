@@ -1,6 +1,8 @@
 #ifndef PAPM_MACRO_H
 #define PAPM_MACRO_H
 
+#include <stddef.h>
+
 #define DISALLOW_COPY(TypeName) \
 TypeName(const TypeName&) = delete
 
@@ -54,6 +56,8 @@ private: \
 //   int foo(int x ATTRIBUTE_UNUSED) { return 10; }
 // to avoid compiler warnings.
 #define ATTRIBUTE_UNUSED __attribute__((__unused__))
+
+#define PACKED(x) __attribute__ ((__aligned__(x), __packed__))
 
 #define LIKELY( exp )       (__builtin_expect( (exp) != 0, true  ))
 #define UNLIKELY( exp )     (__builtin_expect( (exp) != 0, false ))
