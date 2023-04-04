@@ -84,6 +84,8 @@ bool WriteStringToFile(const std::string& content, const std::string& path,
                        bool follow_symlinks = false);
 bool WriteStringToFd(const std::string& content, int fd);
 
+bool ForEachLine(const std::function<void (const char* const)>& visitor, int fd, std::string& err_msg);
+
 #if !defined(_WIN32)
 bool WriteStringToFile(const std::string& content, const std::string& path,
                        mode_t mode, uid_t owner, gid_t group,

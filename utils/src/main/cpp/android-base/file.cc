@@ -214,6 +214,34 @@ bool WriteStringToFd(const std::string& content, int fd) {
   return true;
 }
 
+bool ForEachLine(const std::function<void (const char* const)>& visitor, int fd, std::string& error_msg) {
+  FILE* fp = fdopen(fd, "r");
+  if (fp == NULL) {
+    error_msg.assign("fdopen return NULL.");
+    return false;
+  }
+
+  int saved_errno = errno;
+  char *line = NULL;
+  size_t len = 0;
+  ssize_t nread;
+
+  bool ret = true;
+  while ((getline(&line, &len, fp)) != -1) {
+    visitor(line);
+  }
+
+  if (saved_errno != errno) {
+    error_msg.assign(strerror(errno));
+    ret = false;
+  }
+
+  errno = saved_errno;
+  free(line);
+  fclose(fp);
+  return ret;
+}
+
 static bool CleanUpAfterFailedWrite(const std::string& path) {
   // Something went wrong. Let's not leave a corrupt file lying around.
   int saved_errno = errno;
