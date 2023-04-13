@@ -3,18 +3,18 @@ package com.wyc.utils;
 import android.app.Application;
 import android.util.Log;
 import android.os.Process;
-public class Runtime {
+public class AndCoreRuntime {
     public static final String TAG = "AndCore.Runtime";
-    private static volatile Runtime instance;
+    private static volatile AndCoreRuntime instance;
 
     private Application application;
-    private Runtime() {}
+    private AndCoreRuntime() {}
 
-    public static Runtime instance() {
+    public static AndCoreRuntime instance() {
         if (instance == null) {
-            synchronized (Runtime.class) {
+            synchronized (AndCoreRuntime.class) {
                 if (instance == null) {
-                    instance = new Runtime();
+                    instance = new AndCoreRuntime();
                 }
             }
         }
@@ -29,7 +29,7 @@ public class Runtime {
         this.application = application;
     }
 
-    Application application() {
+    public Application application() {
         if (application == null) {
             Log.d(TAG, "must init, before use.");
             Process.killProcess(Process.myPid());
