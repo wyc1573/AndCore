@@ -237,12 +237,57 @@ Java_com_wyc_utils_JNI_statistics(JNIEnv *env, jclass clazz) {
     test_statistics();
 }
 
+#include "test/elf_utils.h"
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_wyc_utils_JNI_cppConcurrency(JNIEnv *env, jclass clazz) {
     initLog();
     LOG(INFO) << __FUNCTION__ ;
     test_cpp_concurrency();
+}
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_mmapThenDel(JNIEnv *env, jclass clazz) {
+    char* begin = nullptr;
+    int size = 4 * 1024 * 10;
+
+    const char * const str = "a";
+    int fd = open("/data/local/tmp/mmap", O_RDWR | O_CREAT, S_IRWXU|S_IRWXG|S_IRWXO);
+    if (fd == -1) {
+        LOG(INFO) << "open failed!";
+        return;
+    }
+
+    LOG(INFO) << "Write Start (10 PAGE).";
+    for (int i = 0; i < size; i += 1024) {
+        write(fd, str, 1);
+    }
+    LOG(INFO) << "write End.";
+
+    begin = static_cast<char *>(mmap(nullptr, 1024, PROT_READ, MAP_PRIVATE, fd, 0));
+    LOG(INFO) << "begin_ = " << android::base::StringPrintf("%p", begin);
+    unlink("/data/local/tmp/mmap");
+
+    LOG(INFO) << "Sleep 15 Seconds ...";
+    sleep(15);
+
+    LOG(INFO) << "Read MemMap Address ...";
+    int sum = 0;
+    for (int i  = 0; i < size; i += 1024) {
+    sum += begin[i];
+    }
+    LOG(INFO) << "Read End.(" + sum << ")";
+}
+
+
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_testElf(JNIEnv *env, jclass clazz) {
+    initLog();
+    LOG(INFO) << __FUNCTION__ ;
+    test_elf();
 }
 
 #undef CASE

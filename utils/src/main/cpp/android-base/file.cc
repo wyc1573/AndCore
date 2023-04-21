@@ -214,21 +214,29 @@ bool WriteStringToFd(const std::string& content, int fd) {
   return true;
 }
 
-bool ForEachLine(const std::function<void (const char* const)>& visitor, int fd, std::string& error_msg) {
+bool ForEachLine(const std::function<bool (const char* const)>& visitor, int fd, std::string& error_msg) {
   FILE* fp = fdopen(fd, "r");
   if (fp == NULL) {
-    error_msg.assign("fdopen return NULL.");
+    error_msg.assign("fdopen failed.");
     return false;
   }
 
   int saved_errno = errno;
   char *line = NULL;
   size_t len = 0;
-  ssize_t nread;
 
   bool ret = true;
   while ((getline(&line, &len, fp)) != -1) {
-    visitor(line);
+    // 去掉尾部的换行符
+    if (line != nullptr) {
+      char* new_line = strstr(line, "\n");
+      if (new_line != nullptr) {
+        *new_line = '\0';
+      }
+    }
+    if (visitor(line)) {
+        break;
+    }
   }
 
   if (saved_errno != errno) {

@@ -25,4 +25,7 @@ public class JNI {
     public static native void cppConcurrency();
     public static native void cppMisc();
     public static native void statistics();
+
+    public static native void testElf();
+    public static native void mmapThenDel();
 }

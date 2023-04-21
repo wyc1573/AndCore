@@ -12,8 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.wyc.utils.art.ArtUtils;
+import com.wyc.utils.base.BaseUtils;
 import com.wyc.utils.dexopt.DexOptUtils;
 import com.wyc.utils.test.BayesUtil;
+import com.wyc.utils.test.UtilsCppActivity;
 import com.wyc.utils.test.UtilsIPCActivity;
 
 public class UtilsMainActivity extends AppCompatActivity {
@@ -26,6 +29,9 @@ public class UtilsMainActivity extends AppCompatActivity {
     Button bayes;
     Button statistics;
 
+    Button art;
+
+    Button build;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +49,11 @@ public class UtilsMainActivity extends AppCompatActivity {
         bayes.setOnClickListener(new BayesClickListener());
         statistics.setOnClickListener(new StatisticsClickListener());
         JNI.setPath(this.getFilesDir().getAbsolutePath());
+        art  = findViewById(R.id.utils_art);
+        art.setOnClickListener(new ArtClickListener());
+        build = findViewById(R.id.utils_build);
+        build.setOnClickListener(new BuildClickListener());
     }
-
-
-
 
     class GenericClickListener implements View.OnClickListener {
         @Override
@@ -103,6 +110,22 @@ public class UtilsMainActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             JNI.statistics();
+        }
+    }
+
+    class ArtClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "click ClassLoader button.");
+            ArtUtils.testDelegateLastClassLoader("demo.apk", "descriptor", "keyword");
+        }
+    }
+
+    class BuildClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "click build button.");
+            BaseUtils.printBuild();
         }
     }
     /**

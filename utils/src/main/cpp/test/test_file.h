@@ -39,9 +39,5 @@ inline void test_file() {
     fd_dev_null.reset(open("/dev/null", O_RDWR));
     LOG_CALL(WriteFully, (fd_dev_null.release(), buff, 512));
 
-    std::string err_msg;
-    unique_fd proc_self_cmdline(open("/proc/self/cmdline",  O_RDONLY));
-    LOG_CALL(ForEachLine, ([](auto str) { LOG(INFO) << str; }, proc_self_cmdline.release(), err_msg));
-    LOG(INFO) << err_msg;
 }
 #undef LOG_CALL

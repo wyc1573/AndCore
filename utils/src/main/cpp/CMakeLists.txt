@@ -54,6 +54,7 @@ add_library(Utils
         libziparchive/zip_writer.cc
         test/socket/socket_sample.cc
         test/cpp/cpp_sample.cc
+        test/elf_utils.cc
         test/cpp/cpp_misc.cc)
 
 find_library(log-lib

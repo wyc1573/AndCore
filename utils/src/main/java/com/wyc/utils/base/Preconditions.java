@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.wyc.utils.toolkit;
+package com.wyc.utils.base;
 
 import android.text.TextUtils;
 

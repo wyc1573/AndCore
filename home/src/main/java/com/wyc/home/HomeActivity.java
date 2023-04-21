@@ -3,6 +3,7 @@ package com.wyc.home;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,10 +11,17 @@ import android.widget.Button;
 
 import com.wyc.bitmap.BimtapMainActivity;
 import com.wyc.qhook.QHookActivity;
+import com.wyc.utils.base.BaseUtils;
 import com.wyc.utils.test.UtilsCppActivity;
 import com.wyc.utils.test.UtilsGraphicsActivity;
 import com.wyc.utils.UtilsMainActivity;
 import com.wyc.utils.test.UtilsUnixActivity;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
+import dalvik.system.DelegateLastClassLoader;
 
 public class HomeActivity extends AppCompatActivity {
     public static final String TAG = "AndCore.HomeActivity";
@@ -23,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
     Button btn_graphics;
     Button btn_unix;
     Button btn_cpp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +77,7 @@ public class HomeActivity extends AppCompatActivity {
     class GraphicsClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Log.d(TAG, "click qhook button.");
+            Log.d(TAG, "click Graphics button.");
             startActivity(new Intent(HomeActivity.this, UtilsGraphicsActivity.class));
         }
     }
@@ -76,7 +85,7 @@ public class HomeActivity extends AppCompatActivity {
     class UnixClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Log.d(TAG, "click qhook button.");
+            Log.d(TAG, "click unix button.");
             startActivity(new Intent(HomeActivity.this, UtilsUnixActivity.class));
         }
     }
@@ -84,7 +93,7 @@ public class HomeActivity extends AppCompatActivity {
     class CppClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            Log.d(TAG, "click qhook button.");
+            Log.d(TAG, "click cpp button.");
             startActivity(new Intent(HomeActivity.this, UtilsCppActivity.class));
         }
     }
