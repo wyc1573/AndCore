@@ -320,8 +320,12 @@ void test_elf() {
                 Elf64_Xword entsize = shdr->sh_entsize;
                 Elf64_Sym* sym = reinterpret_cast<Elf64_Sym *>(param.elf_start + offset);
                 int nsym = sh_size / entsize;
+                LOG(INFO) << "entsize = " << entsize;
                 for (int i = 0; i < nsym; i++) {
-                    sym += i;
+                    if (i == 50) {
+                        LOG(INFO) << "more ...";
+                        break;
+                    }
                     LOG(INFO) << i << ": st_name = " << (str_tab + sym->st_name)
                     << ",\n     st_size = " << sym->st_size
                     << ", st_value = " << sym->st_value
@@ -329,6 +333,7 @@ void test_elf() {
                     << ", STB = " << STB(ELF_ST_BIND(sym->st_info))
                     << ", STT = " << STT(ELF_ST_TYPE(sym->st_info))
                     << ", sym->st_other = " << (int) sym->st_other;
+                    sym++;
                 }
             }
         }
