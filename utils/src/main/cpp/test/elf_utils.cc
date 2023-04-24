@@ -282,6 +282,7 @@ void test_elf() {
     WalkElfSections(path.c_str(), str_visitor);
 
     auto section_visitor = [&] (FilterSectionParam param) -> bool {
+        LOG(INFO) << "section: " << param.section_name;
         if (strcmp(".note.gnu.build-id", param.section_name) == 0) {
             LOG(INFO) << "Find Build Id Section";
             if (param.elf_64) {
@@ -323,7 +324,7 @@ void test_elf() {
                 LOG(INFO) << "entsize = " << entsize;
                 for (int i = 0; i < nsym; i++) {
                     if (i == 50) {
-                        LOG(INFO) << "more ...";
+                        LOG(INFO) << "more ... Total: " << nsym;
                         break;
                     }
                     LOG(INFO) << i << ": st_name = " << (str_tab + sym->st_name)
@@ -334,6 +335,28 @@ void test_elf() {
                     << ", STT = " << STT(ELF_ST_TYPE(sym->st_info))
                     << ", sym->st_other = " << (int) sym->st_other;
                     sym++;
+                }
+            }
+        } else if (strcmp(".rela.dyn", param.section_name) == 0) {
+            LOG(INFO) << "Find .rela.dyn Section";
+            if (param.elf_64) {
+                Elf64_Shdr* shdr = reinterpret_cast<Elf64_Shdr*>(param.section_hdr);
+                Elf64_Off offset = shdr->sh_offset;
+                Elf64_Xword sh_size = shdr->sh_size;
+                Elf64_Xword entsize = shdr->sh_entsize;
+                int num = sh_size / entsize;
+
+                Elf64_Rela* rela = reinterpret_cast<Elf64_Rela*>(param.elf_start + offset);
+                for (int i = 0; i < num; i++) {
+                    LOG(INFO) << "r_offset: " << rela->r_offset << ", r_addend: " << rela->r_addend
+                    << ", r_info = " << rela->r_info;
+                    LOG(INFO) << "ELF64_R_SYM: " << ELF64_R_SYM(rela->r_info);
+                    LOG(INFO) << "ELF64_R_TYPE: " << ELF64_R_TYPE(rela->r_info);
+                    if (i ==  10) {
+                        LOG(INFO) << "more ... Total: " << num;
+                        break;
+                    }
+                    rela++;
                 }
             }
         }
