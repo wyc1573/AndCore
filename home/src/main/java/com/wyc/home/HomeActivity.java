@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import com.wyc.bitmap.BimtapMainActivity;
 import com.wyc.qhook.QHookActivity;
+import com.wyc.utils.JNI;
 import com.wyc.utils.base.BaseUtils;
 import com.wyc.utils.test.UtilsCppActivity;
 import com.wyc.utils.test.UtilsGraphicsActivity;
@@ -32,6 +33,8 @@ public class HomeActivity extends AppCompatActivity {
     Button btn_unix;
     Button btn_cpp;
 
+    Button btn_test;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,16 @@ public class HomeActivity extends AppCompatActivity {
         btn_unix.setOnClickListener(new UnixClickListener());
         btn_cpp = findViewById(R.id.home_cpp);
         btn_cpp.setOnClickListener(new CppClickListener());
+        btn_test = findViewById(R.id.home_test);
+        btn_test.setOnClickListener(new TestClickListener());
+    }
+
+    class TestClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "click test button.");
+            JNI.tempTest();
+        }
     }
 
     class BitmapClickListener implements View.OnClickListener {

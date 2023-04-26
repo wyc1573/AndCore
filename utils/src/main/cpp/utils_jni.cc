@@ -290,4 +290,12 @@ Java_com_wyc_utils_JNI_testElf(JNIEnv *env, jclass clazz) {
     test_elf();
 }
 
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_tempTest(JNIEnv *env, jclass clazz) {
+    initLog();
+    LOG(INFO) << __FUNCTION__ ;
+
+}
+
 #undef CASE

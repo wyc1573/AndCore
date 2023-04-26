@@ -67,3 +67,7 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_com_wyc_utils_JNI_mmapThenDel(JNIEnv *env, jclass clazz);
 
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_wyc_utils_JNI_tempTest(JNIEnv *env, jclass clazz);
+

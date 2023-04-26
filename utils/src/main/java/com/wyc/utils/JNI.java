@@ -28,4 +28,6 @@ public class JNI {
 
     public static native void testElf();
     public static native void mmapThenDel();
+
+    public static native void tempTest();
 }
