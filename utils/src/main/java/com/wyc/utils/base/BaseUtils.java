@@ -10,6 +10,15 @@ import java.lang.reflect.Method;
 
 public class BaseUtils {
     public static final String TAG = "AndCore.BaseUtils";
+
+    public static void sleep(int dur) {
+        try {
+            Thread.sleep(dur);
+        } catch (Throwable t) {
+            Log.e(TAG, "sleep", t);
+        }
+    }
+
     public static String getProp(String key, String def) {
         if (key == null) {
             return def;
