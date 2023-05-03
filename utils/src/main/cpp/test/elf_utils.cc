@@ -260,6 +260,7 @@ const char* STB(uint8_t type) {
     return "UNKNOWN";
 }
 
+const char* DT_TAG(int32_t tag);
 
 void test_elf() {
 
@@ -359,9 +360,115 @@ void test_elf() {
                     rela++;
                 }
             }
+        } else if (strcmp(".dynamic", param.section_name) == 0) {
+            LOG(INFO) << "Find .dynamic section.";
+            Elf64_Shdr* shdr = reinterpret_cast<Elf64_Shdr*>(param.section_hdr);
+            Elf64_Off offset = shdr->sh_offset;
+            Elf64_Xword sh_size = shdr->sh_size;
+            Elf64_Xword entsize = shdr->sh_entsize;
+            int num = sh_size / entsize;
+
+            Elf64_Dyn* dyn = reinterpret_cast<Elf64_Dyn *>(param.elf_start + offset);
+            while (dyn->d_tag != NULL) {
+                LOG(INFO) << "d_tag: " << DT_TAG(dyn->d_tag);
+                dyn++;
+            }
         }
         return false;
     };
 
     WalkElfSections(path.c_str(), section_visitor);
+}
+
+
+const char* DT_TAG(int32_t tag) {
+    switch (tag) {
+        case 0:
+            return "DT_NULL";
+        case 1:
+            return "DT_NEEDED";
+        case 2:
+            return "DT_PLTRELSZ";
+        case 3:
+            return "DT_PLTGOT";
+        case 4:
+            return "DT_HASH";
+        case 5:
+            return "DT_STRTAB";
+        case 6:
+            return "DT_SYMTAB";
+        case 7:
+            return "DT_RELA";
+        case 8:
+            return "DT_RELASZ";
+        case 9:
+            return "DT_RELAENT";
+        case 10:
+            return "DT_STRSZ";
+        case 11:
+            return "DT_SYMENT";
+        case 12:
+            return "DT_INIT";
+        case 13:
+            return "DT_FINI";
+        case 14:
+            return "DT_SONAME";
+        case 15:
+            return "DT_RPATH";
+        case 16:
+            return "DT_SYMBOLIC";
+        case 17:
+            return "DT_REL";
+        case 18:
+            return "DT_RELSZ";
+        case 19:
+            return "DT_RELENT";
+        case 20:
+            return "DT_PLTREL";
+        case 21:
+            return "DT_DEBUG";
+        case 22:
+            return "DT_TEXTREL";
+        case 23:
+            return "DT_JMPREL";
+        case 32:
+            return "DT_ENCODING";
+        case 0x60000000:
+            return "OLD_DT_LOOS";
+        case 0x6000000d:
+            return "DT_LOOS";
+        case 0x6ffff000:
+            return "DT_HIOS";
+        case 0x6ffffd00:
+            return "DT_VALRNGLO";
+        case 0x6ffffdff:
+            return "DT_VALRNGHI";
+        case 0x6ffffe00:
+            return "DT_ADDRRNGLO";
+        case 0x6ffffeff:
+            return "DT_ADDRRNGHI";
+        case 0x6ffffff0:
+            return "DT_VERSYM";
+        case 0x6ffffff9:
+            return "DT_RELACOUNT";
+        case 0x6ffffffa:
+            return "DT_RELCOUNT";
+        case 0x6ffffffb:
+            return "DT_FLAGS_1";
+        case 0x6ffffffc:
+            return "DT_VERDEF";
+        case 0x6ffffffd:
+            return "DT_VERDEFNUM";
+        case 0x6ffffffe:
+            return "DT_VERNEED";
+        case 0x6fffffff:
+            return "DT_VERNEEDNUM";
+        case 0x70000000:
+            return "DT_LOPROC";
+        case 0x7fffffff:
+            return "DT_HIPROC";
+        default:
+            return "UNKNOWN";
+    }
+
 }
