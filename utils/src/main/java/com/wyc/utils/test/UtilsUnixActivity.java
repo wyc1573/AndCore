@@ -31,6 +31,14 @@ public class UtilsUnixActivity extends AppCompatActivity {
         btnElf.setOnClickListener(new ElfClickListener());
     }
 
+    static {
+        try {
+            System.loadLibrary("ElfDemo");
+        } catch (Throwable t) {
+            Log.d(TAG, "", t);
+        }
+    }
+
     class SignalFdClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {

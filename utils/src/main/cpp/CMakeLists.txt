@@ -66,3 +66,11 @@ find_library(log-z
 target_link_libraries(Utils
         ${log-lib}
         ${log-z})
+
+add_library(ElfDemo
+        SHARED
+        test/test_elf.cc
+        )
+
+target_link_libraries(ElfDemo
+        ${log-lib})
