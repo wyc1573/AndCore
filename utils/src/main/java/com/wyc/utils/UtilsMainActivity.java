@@ -18,6 +18,7 @@ import com.wyc.utils.dexopt.DexOptUtils;
 import com.wyc.utils.test.BayesUtil;
 import com.wyc.utils.test.UtilsCppActivity;
 import com.wyc.utils.test.UtilsIPCActivity;
+import com.wyc.utils.tools.FileUtils;
 
 public class UtilsMainActivity extends AppCompatActivity {
     public static final String TAG = "AndCore.Utils";
@@ -32,6 +33,9 @@ public class UtilsMainActivity extends AppCompatActivity {
     Button art;
 
     Button build;
+
+    Button maps;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +57,9 @@ public class UtilsMainActivity extends AppCompatActivity {
         art.setOnClickListener(new ArtClickListener());
         build = findViewById(R.id.utils_build);
         build.setOnClickListener(new BuildClickListener());
+
+        maps = findViewById(R.id.utils_maps);
+        maps.setOnClickListener(new MapsClickListener());
     }
 
     class GenericClickListener implements View.OnClickListener {
@@ -128,6 +135,23 @@ public class UtilsMainActivity extends AppCompatActivity {
             BaseUtils.printBuild();
         }
     }
+
+    class MapsClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "click maps button.");
+            StringBuilder sb = new StringBuilder();
+            FileUtils.forEachLine("/proc/self/maps", new FileUtils.IFilter() {
+            }, new FileUtils.IParser() {
+                @Override
+                public void parse(String line) {
+                    sb.append(line).append("\n");
+                }
+            });
+            Log.d(TAG, sb.toString());
+        }
+    }
+
     /**
      * @param path eg. /data/app/com.wyc.andcore-swEXFEdZCjv3_HUahATKWg==/base.apk
      */
