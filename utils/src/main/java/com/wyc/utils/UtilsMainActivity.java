@@ -36,6 +36,8 @@ public class UtilsMainActivity extends AppCompatActivity {
 
     Button maps;
 
+    Button anr;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,9 @@ public class UtilsMainActivity extends AppCompatActivity {
 
         maps = findViewById(R.id.utils_maps);
         maps.setOnClickListener(new MapsClickListener());
+
+        anr = findViewById(R.id.utils_anr);
+        anr.setOnClickListener(new ANRClickListener());
     }
 
     class GenericClickListener implements View.OnClickListener {
@@ -152,6 +157,17 @@ public class UtilsMainActivity extends AppCompatActivity {
         }
     }
 
+    class ANRClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "click ANR button.");
+            try {
+                Thread.sleep(1000*1000);
+            } catch (Throwable t) {
+
+            }
+        }
+    }
     /**
      * @param path eg. /data/app/com.wyc.andcore-swEXFEdZCjv3_HUahATKWg==/base.apk
      */
