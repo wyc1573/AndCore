@@ -38,6 +38,8 @@ public class UtilsMainActivity extends AppCompatActivity {
 
     Button anr;
 
+    Button cpu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +67,9 @@ public class UtilsMainActivity extends AppCompatActivity {
 
         anr = findViewById(R.id.utils_anr);
         anr.setOnClickListener(new ANRClickListener());
+
+        cpu = findViewById(R.id.utils_loop);
+        cpu.setOnClickListener(new CpuBoundClickListener());
     }
 
     class GenericClickListener implements View.OnClickListener {
@@ -165,6 +170,31 @@ public class UtilsMainActivity extends AppCompatActivity {
                 Thread.sleep(1000*1000);
             } catch (Throwable t) {
 
+            }
+        }
+    }
+
+    class CpuBoundClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View view) {
+            Log.d(TAG, "click cpu bound button.");
+            for (int i = 0; i < 8; i++) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        double res = 3.1415926;
+                        int cnt = 0;
+                        while (true) {
+                            res = Math.pow(res, 3);
+                            if (res > Double.MAX_VALUE - 100) {
+                                res = 3.1415926;
+                                cnt++;
+                            }
+                            if (cnt > Integer.MAX_VALUE - 100) break;
+                        }
+                        Log.d(TAG, "res = " + res);
+                    }
+                }).start();
             }
         }
     }
