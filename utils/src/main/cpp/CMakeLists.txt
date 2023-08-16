@@ -52,6 +52,7 @@ add_library(Utils
         libziparchive/zip_archive_stream_entry.cc
         libziparchive/zip_archive.cc
         libziparchive/zip_writer.cc
+        effective-cpp/effect-1.cc
         test/socket/socket_sample.cc
         test/cpp/cpp_sample.cc
         test/elf_utils.cc
