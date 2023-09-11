@@ -39,6 +39,7 @@
 #include "test/test_statistics.h"
 #include "test/test_futex.h"
 #include "test/test_mem_model.h"
+#include "apue/signal_test.h"
 
 #define CASE(n) LOG(INFO) << "============" << #n << "==============";
 
@@ -295,7 +296,7 @@ JNIEXPORT void JNICALL
 Java_com_wyc_utils_JNI_tempTest(JNIEnv *env, jclass clazz) {
     initLog();
     LOG(INFO) << __FUNCTION__ ;
-
+    signal_test();
 }
 
 #undef CASE

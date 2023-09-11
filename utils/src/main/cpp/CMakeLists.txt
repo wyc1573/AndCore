@@ -53,6 +53,7 @@ add_library(Utils
         libziparchive/zip_archive.cc
         libziparchive/zip_writer.cc
         effective-cpp/effect-1.cc
+        apue/signal_test.cc
         test/socket/socket_sample.cc
         test/cpp/cpp_sample.cc
         test/elf_utils.cc
