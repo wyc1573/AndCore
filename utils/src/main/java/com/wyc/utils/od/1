@@ -1,0 +1,71 @@
+import java.util.Scanner;
+
+// 注意类名必须为 Main, 不要有任何 package xxx 信息
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String line = in.nextLine();
+
+        String[] str = line.split(";");
+
+        int left = 0, right = 0;
+
+        for (String s : str) {
+            if (s.isEmpty()) continue;
+            char ch = s.charAt(0);
+            if (ch != 'A' && ch != 'S' && ch != 'D' && ch != 'W') continue;
+            for(int i = 0; i < s.length(); i++) {
+                //取数字
+                char op = s.charAt(i);
+
+                if (op != 'A'
+                && op != 'S'
+                && op != 'D'
+                && op != 'W') break;
+
+                if(i == s.length()-1) break;
+                char firstCh = s.charAt(i+1);
+                int first = 0;
+                if (firstCh >= '0' && firstCh <= '9') {
+                    first = firstCh - '0';
+                } else {
+                    //不合法
+                    break;
+                }
+                char secondChar;
+                int second;
+                int res = 0;
+                if(i+2 > s.length()-1) {
+                    //具体操作
+                    res = first;
+                } else {
+                    secondChar = s.charAt(i+2);
+                    if (secondChar >= '0' && secondChar <= '9') {
+                        second = secondChar - '0';
+                        res = first*10+second;
+                    } else {
+                        break;
+                    }
+                }
+
+                switch(op) {
+                    case 'W':
+                    right += res;
+                    break;
+                    case 'D':
+                    left += res;
+                    break;
+                    case 'A':
+                    left -= res;
+                    break;
+                    case 'S':
+                    right -= res;
+                    break;
+                }
+
+            }
+        }
+
+        System.out.println(left + "," + right);
+    }
+}

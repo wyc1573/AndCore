@@ -1,4 +1,4 @@
-#include "effect-1.h"
+#include "effect.h"
 #include <iostream>
 #include <list>
 #include <vector>

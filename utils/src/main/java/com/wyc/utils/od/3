@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+import java.util.*;
+
+// 注意类名必须为 Main, 不要有任何 package xxx 信息
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        for(int i = 0; i < n; i++) {
+            arr.add(in.nextInt());
+        }
+
+        ArrayList<Integer> numL = new ArrayList<>();
+        for(int i = 0; i < n; i++) {
+            numL.add(0);
+        }
+        ArrayList<Integer> numR = new ArrayList<>(n);
+        for(int i = 0; i < n; i++) {
+            numR.add(0);
+        }
+
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < i; j++) {
+                if (arr.get(j) < arr.get(i)) {
+                    numL.set(i, Math.max(numL.get(i), numL.get(j)));
+                }
+            }
+            numL.set(i, numL.get(i)+1);
+        }
+
+        for(int i = n-1; i >= 0; i--) {
+            for(int j = n-1; j > i; j--) {
+                if(arr.get(j) < arr.get(i)) {
+                    numR.set(i, Math.max(numR.get(i), numR.get(j)));
+                }
+            }
+            numR.set(i, numR.get(i) + 1);
+        }
+        int max = 0;
+        for(int i = 0; i < n; i++) {
+            if(max < numL.get(i) + numR.get(i) - 1) {
+                max = numL.get(i) + numR.get(i) - 1;
+            }
+        }
+        System.out.println(n-max);
+    }
+
+}
